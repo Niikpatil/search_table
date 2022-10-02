@@ -6,10 +6,10 @@ const UserList = () => {
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Desc</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -24,11 +24,6 @@ const UserList = () => {
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
           </tr>
         </tbody>
       </table>

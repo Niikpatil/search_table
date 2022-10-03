@@ -16,6 +16,8 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  const dataList = data.map((dList) => <UserList itemList={dList} />);
+
   return (
     <div className="container py-4">
       <header className="pb-3 mb-4 border-bottom">Search Table</header>
@@ -31,11 +33,11 @@ function App() {
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
-                <th scope="col">Desc</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <UserList />
+            {dataList}
           </table>
         </div>
         <div className="p-2 col-5">

@@ -7,6 +7,7 @@ import UserDetail from "./components/UserDetail";
 function App() {
   const [data, setData] = useState([]);
   const [idClick, setIdClick] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     axios
@@ -23,13 +24,26 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setIdClick(data);
-        console.log(data);
+        // console.log(data);
       });
   };
 
-  const dataList = data.map((dList) => (
-    <UserList itemList={dList} key={dList.id} fetchData={fetchData} />
-  ));
+  const dataList = data
+    .filter((search_data) => {
+      if (searchText === " ") {
+        return search_data;
+      } else if (
+        search_data.title.includes(searchText.toLowerCase()) ||
+        search_data.id.toString().indexOf(searchText.toLowerCase()) > -1
+      ) {
+        return search_data;
+      }
+      return false;
+    })
+    .map((dList) => (
+      <UserList itemList={dList} key={dList.id} fetchData={fetchData} />
+    ))
+    .slice(0, 5);
 
   return (
     <div className="container py-4">
@@ -38,7 +52,11 @@ function App() {
         <div className="p-2 col-5">
           <div className="d-flex flex-row justify-content-between">
             Find Detail
-            <input type="text" placeholder="Search" />
+            <input
+              type="text"
+              placeholder="Search"
+              onChange={(e) => setSearchText(e.target.value)}
+            />
           </div>
           <DataTable>{dataList}</DataTable>
         </div>

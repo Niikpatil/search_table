@@ -4,14 +4,12 @@ const UserList = ({
   itemList: { id, title, completed, userId },
   fetchData,
 }) => {
-  const status = completed === true ? "Complete" : "Incomplete";
-
   return (
     <tbody>
       <tr>
         <td>{id}</td>
         <td>{title}</td>
-        <td>{status}</td>
+        <td>{completed === true ? "Complete" : "Incomplete"}</td>
         <td>
           <button
             type="button"

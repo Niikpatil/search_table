@@ -1,22 +1,35 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import DataTable from "./components/DataTable";
 import UserList from "./components/DataList/UserList";
 import UserDetail from "./components/UserDetail";
 
 function App() {
   const [data, setData] = useState([]);
+  const [idClick, setIdClick] = useState([]);
 
   useEffect(() => {
     axios
       .get(`https://jsonplaceholder.typicode.com/todos`)
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const dataList = data.map((dList) => <UserList itemList={dList} />);
+  const fetchData = (idClick) => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${idClick}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIdClick(data);
+        console.log(data);
+      });
+  };
+
+  const dataList = data.map((dList) => (
+    <UserList itemList={dList} key={dList.id} fetchData={fetchData} />
+  ));
 
   return (
     <div className="container py-4">
@@ -27,21 +40,10 @@ function App() {
             Find Detail
             <input type="text" placeholder="Search" />
           </div>
-
-          <table className="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            {dataList}
-          </table>
+          <DataTable>{dataList}</DataTable>
         </div>
         <div className="p-2 col-5">
-          <UserDetail />
+          <UserDetail userInfo={idClick} />
         </div>
       </div>
     </div>

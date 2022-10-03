@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserDetail = () => {
+const UserDetail = ({ userInfo }) => {
   return (
     <div>
       <div className="card text-bg-light mb-3">
@@ -8,10 +8,12 @@ const UserDetail = () => {
           <h5>Light card title</h5>
         </div>
         <div className="card-body">
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <div className="card-body">
+            <p className="card-text">User Name : {userInfo.email}</p>
+            <p className="card-text">ToDo UserName : {userInfo.name}</p>
+            <p className="card-text">Website : {userInfo.website}</p>
+            <p className="card-text">Phone : {userInfo.phone}</p>
+          </div>
         </div>
       </div>
     </div>

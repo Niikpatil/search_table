@@ -11,11 +11,9 @@
 
 - [View Live](https://search-tablef6.netlify.app/)
 
-<!-- ## Project Description -->
+## Project Description
 
-<!-- ![screen shot](https://github.com/Niikpatil/table_search/blob/master/public/project_images/c1.png)
-
-![screen shot](https://github.com/Niikpatil/table_search/blob/master/public/project_images/c2.png) -->
+![screen shot](https://github.com/Niikpatil/ReactJS_List/blob/main/img/table.png)
 
 ### Project References
 
